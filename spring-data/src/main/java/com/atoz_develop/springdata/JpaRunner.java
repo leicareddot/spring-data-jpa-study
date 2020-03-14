@@ -29,13 +29,24 @@ public class JpaRunner implements ApplicationRunner {
         Comment comment2 = new Comment();
         comment2.setComment("맛있는데 왜그래요");
 
-        post.addComment(comment2);
-*/
+        post.addComment(comment2);*/
         Session session = entityManager.unwrap(Session.class);  // org.hibernate.Session
 
 //        session.save(post);
 
-        Post post = session.get(Post.class, 1l);
-        session.delete(post);
+        Post getPost = session.get(Post.class, 1l);
+//        session.delete(post);
+        System.out.println("=============================");
+        System.out.println(getPost.getTitle());
+
+        /*Comment comment = session.get(Comment.class, 2l);
+        System.out.println("=============================");
+        System.out.println(comment.getComment());
+        System.out.println(comment.getPost().getTitle());*/
+
+        getPost.getComments().forEach(c -> {
+            System.out.println("----------------");
+            System.out.println(c.getComment());
+        });
     }
 }
