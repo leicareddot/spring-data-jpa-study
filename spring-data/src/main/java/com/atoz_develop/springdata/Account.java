@@ -15,7 +15,7 @@ public class Account {
 
     private String password;
 
-    @OneToMany
+    @OneToMany(mappedBy = "owner")
     private Set<Study> studies = new HashSet<>();
 
     /*@Temporal(TemporalType.TIMESTAMP)
@@ -59,6 +59,16 @@ public class Account {
 
     public void setStudies(Set<Study> studies) {
         this.studies = studies;
+    }
+
+    public void addStudy(Study study) {
+        this.getStudies().add(study);
+        study.setOwner(this);
+    }
+
+    public void removeStudy(Study study) {
+        this.getStudies().remove(study);
+        study.setOwner(null);
     }
 /*public Date getCreatedDate() {
         return createdDate;
