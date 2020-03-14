@@ -1,7 +1,8 @@
 package com.atoz_develop.springdata;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Account {
@@ -13,6 +14,9 @@ public class Account {
     private String username;
 
     private String password;
+
+    @OneToMany
+    private Set<Study> studies = new HashSet<>();
 
     /*@Temporal(TemporalType.TIMESTAMP)
     private Date createdDate = new Date();
@@ -49,7 +53,14 @@ public class Account {
         this.password = password;
     }
 
-    /*public Date getCreatedDate() {
+    public Set<Study> getStudies() {
+        return studies;
+    }
+
+    public void setStudies(Set<Study> studies) {
+        this.studies = studies;
+    }
+/*public Date getCreatedDate() {
         return createdDate;
     }
 

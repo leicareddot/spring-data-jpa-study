@@ -13,9 +13,6 @@ public class Study {
 
     private String name;
 
-    @ManyToOne
-    private Account owner;
-
     public Long getId() {
         return id;
     }
@@ -30,13 +27,5 @@ public class Study {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Account getOwner() {
-        return owner;
-    }
-
-    public void setOwner(Account owner) {
-        this.owner = owner;
     }
 }
